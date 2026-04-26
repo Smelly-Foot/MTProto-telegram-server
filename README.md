@@ -17,6 +17,13 @@ ssh root@YOUR_IP_ADDRESS
 ```bash
 bash <(curl -sL https://raw.githubusercontent.com/Smelly-Foot/MTProto-telegram-server/main/install.sh)
 ```
+Если появляется ошибка вида:
+/dev/fd/63: line 25: xxd: command not found
+
+То нужно сперва запустить:
+```bash
+sudo apt update && sudo apt install xxd -y
+```
 
 Готово. Скрипт выдаст ссылку — отправьте её в Telegram и подключитесь.
 
