@@ -22,7 +22,7 @@ fi
 
 # 2. Генерируем fake-TLS секрет
 # Формат: ee + 16 случайных байт + 7777772e676f6f676c652e636f6d (www.google.com)
-RAND_PART=$(head -c 16 /dev/urandom | xxd -ps -c 256)
+RAND_PART=$(head -c 16 /dev/urandom)
 SECRET="ee${RAND_PART}7777772e676f6f676c652e636f6d"
 echo "🔑 Сгенерирован fake-TLS секрет"
 
