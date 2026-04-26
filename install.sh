@@ -11,13 +11,13 @@ echo ""
 
 # 1. Docker
 if ! command -v docker &>/dev/null; then
-    echo "📦 Устанавливаю Docker..."
+    echo "Устанавливаю Docker..."
     apt-get update -qq
     apt-get install -y -qq docker.io >/dev/null 2>&1
     systemctl enable --now docker >/dev/null 2>&1
-    echo "   ✅ Docker установлен"
+    echo "    Docker установлен"
 else
-    echo "   ✅ Docker уже установлен"
+    echo "    Docker уже установлен"
 fi
 
 # 2. Генерируем fake-TLS секрет
@@ -28,7 +28,7 @@ echo "🔑 Сгенерирован fake-TLS секрет"
 
 # 3. Определяем IP (принудительно IPv4)
 IP=$(curl -4 -s ifconfig.me || curl -4 -s icanhazip.com || hostname -I | awk '{print $1}')
-echo "🌐 IP сервера: $IP"
+echo " IP сервера: $IP"
 
 # 4. Создаём конфиг
 mkdir -p /opt/mtg
@@ -53,7 +53,7 @@ EOF
 docker rm -f mtg 2>/dev/null || true
 
 # 6. Запускаем
-echo "🚀 Запускаю прокси..."
+echo " Запускаю прокси..."
 docker run -d \
     --name mtg \
     --restart always \
@@ -65,9 +65,9 @@ sleep 2
 
 # 7. Проверка
 if docker ps | grep -q mtg; then
-    echo "   ✅ Прокси запущен"
+    echo "    Прокси запущен"
 else
-    echo "   ❌ Ошибка запуска! Логи:"
+    echo "    Ошибка запуска! Логи:"
     docker logs mtg
     exit 1
 fi
@@ -77,9 +77,9 @@ LINK="https://t.me/proxy?server=${IP}&port=443&secret=${SECRET}"
 
 echo ""
 echo "========================================="
-echo "✅ Готово! Ваш прокси работает."
+echo " Готово! Ваш прокси работает."
 echo ""
-echo "📎 Ссылка для подключения:"
+echo " Ссылка для подключения:"
 echo ""
 echo "   $LINK"
 echo ""
